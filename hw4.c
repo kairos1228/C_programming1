@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main() {
@@ -17,8 +18,7 @@ int main() {
             return 0;
         }
     }
-
     printf("It is a prime number.\n");
-
+    
     return 0;
 }
