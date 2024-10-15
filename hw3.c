@@ -11,6 +11,7 @@ int main(void)
 		for (int n = 0; n < m; n++) {
 				printf("**");
 		}
+		m += 1
 		printf("*\n");
 		}
 	return 0;
