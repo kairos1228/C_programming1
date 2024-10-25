@@ -1,0 +1,29 @@
+/* • 표준입력으로 임의의 양의 정수를 입력 받아 소수이면 “It is a prime number.“를, 아니면 “It is not
+a prime number.”를 출력하는 프로그램을 작성하세요. */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+	int num = 0;
+	printf("Please enter a number: ");
+	scanf("%d", &num);
+
+	// 1 또는 0일 경우 소수가 아님
+	if (num <= 1) {
+		printf("It is not a prime number.");
+		return 0;
+	}
+
+	for (int i = 2; i < num; i++) {
+		if (num % i == 0) {  // 나누어 떨어지면 소수가 아님
+			printf("It is not a prime number.");
+			return 0;
+		}
+	}
+
+	// 반복문을 끝까지 돌았으면 소수임
+	printf("It is a prime number.");
+	return 0;
+}
