@@ -1,0 +1,26 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+    int floors;  // 사용자가 입력한 층 수
+    printf("몇 층의 성을 쌓을 건가요? ");
+    scanf("%d", &floors);
+
+    for (int i = 0; i < floors; i++) {
+        // 공백 출력 (층 수 - i - 1 만큼)
+        for (int j = 0; j < floors - i - 1; j++) {
+            printf(" ");
+        }
+
+        // 별 출력 (처음에 1개, 그 이후에는 2*i + 1 개)
+        for (int k = 0; k < 2 * i + 1; k++) {
+            printf("*");
+        }
+
+        // 줄 바꿈
+        printf("\n");
+    }
+
+    return 0;
+}
