@@ -1,0 +1,97 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int Q1() {
+	int Pfee;
+	do {
+		printf("월평균 대중교통 요금: ");
+		scanf("%d", &Pfee);
+	} while (Pfee <= 0);
+	return Pfee;
+}
+
+int Q2() {
+	int Lfee;
+	do {
+		printf("월평균 생활서비스 결제액: ");
+		scanf("%d", &Lfee);
+	} while (Lfee <= 0);
+	return Lfee;
+}
+
+int Q3() {
+	int etcfee;
+	do {
+		printf("월평균 기타 결제액: ");
+		scanf("%d", &etcfee);
+	} while (etcfee <= 0);
+	return etcfee;
+}
+
+int main(void) {
+	printf("*** 신한/국민 K-패스 체크카드 시뮬레이션 프로그램 ***\n\n");
+
+	int Pfee = Q1();
+	int Lfee = Q2();
+	int etcfee = Q3();
+	int total = Pfee + Lfee + etcfee;
+	printf("\n");
+
+	int PfeeSHDiscount = 0, LfeeSHDiscount = 0;
+	int PfeeKBDiscount = 0, LfeeKBDiscount = 0;
+
+	// 할인 금액 계산
+	if (total < 200000) {
+		// 할인 없음
+	}
+	else if (total >= 200000 && total < 500000) {
+		PfeeSHDiscount = Pfee * 0.1; // 10% 할인
+		LfeeSHDiscount = Lfee * 0.02; // 2% 할인
+		PfeeKBDiscount = Pfee * 0.1; // 10% 할인
+		LfeeKBDiscount = Lfee * 0.02; // 2% 할인
+
+		if (PfeeSHDiscount > 2000) {
+			PfeeSHDiscount = 2000; // 최대 2000원 할인
+		}
+		if (LfeeSHDiscount > 8000) {
+			LfeeSHDiscount = 8000; // 최대 8000원 할인
+		}
+	}
+	else { // total >= 500000
+		PfeeSHDiscount = Pfee * 0.1; // 10% 할인
+		LfeeSHDiscount = Lfee * 0.02; // 2% 할인
+		PfeeKBDiscount = Pfee * 0.1; // 10% 할인
+		LfeeKBDiscount = Lfee * 0.02; // 2% 할인
+
+		if (PfeeSHDiscount > 5000) {
+			PfeeSHDiscount = 5000; // 최대 5000원 할인
+		}
+		if (LfeeSHDiscount > 5000) {
+			LfeeSHDiscount = 5000; // 최대 5000원 할인
+		}
+		if (PfeeKBDiscount > 2000) {
+			PfeeKBDiscount = 2000; // 최대 2000원 할인
+		}
+		if (LfeeKBDiscount > 8000) {
+			LfeeKBDiscount = 8000; // 최대 8000원 할인
+		}
+	}
+
+	// 할인 금액 계산
+	int SHDiscount = PfeeSHDiscount + LfeeSHDiscount;
+	double SHDiscountRate = (double)SHDiscount / total * 100; // 할인률 계산
+
+	int KBDiscount = PfeeKBDiscount + LfeeKBDiscount;
+	double KBDiscountRate = (double)KBDiscount / total * 100; // 할인률 계산
+
+	printf("신한 K-패스 체크카드의 예상 할인 금액은 %d원이며, 할인률은 %.2f%%입니다.\n", SHDiscount, SHDiscountRate);
+	printf("국민 K-패스 체크카드의 예상 할인 금액은 %d원이며, 할인률은 %.2f%%입니다.\n", KBDiscount, KBDiscountRate);
+	if (SHDiscount > KBDiscount) 
+		printf("따라서 신한 K-패스 체크카드가 나은 선택입니다.\n");
+	else if (SHDiscount < KBDiscount) 
+		printf("따라서 국민 K-패스 체크카드가 나은 선택입니다.\n");
+	else
+		printf("따라서 어느 것을 선택하셔도 혜택이 동일합니다.\n");
+
+	return 0;
+}
