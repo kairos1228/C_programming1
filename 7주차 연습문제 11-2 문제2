@@ -1,0 +1,28 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void) {
+	char str[100];
+	int strLen = 0, i;
+	char j;
+	printf("하나의 영단어룰 입력하세요: ");
+	scanf("%s", str);
+	
+	while (str[strLen] != '\0')
+		strLen++;
+
+	for (i = 0; i < strLen / 2; i++) { //배열의 절반까지만 실행해야 작동함(아니면 원상복구됨)
+		j = str[i];
+		str[i] = str[strLen - i-1];
+		str[strLen - i-1] = j;
+	}
+	/* 또 다른 배열을 만들어서 푸는 방법 
+	reversed_str[100]을 만들고
+	for (i = 0; i < strLen; i++)
+		reversed_str[strLen-i-1] = str[strLen];
+	reversed_str[strLen] = str[strLen]; <- 마지막 \0을 같게 하기 위함
+	*/
+
+	printf("영단어의 역순 : %s\n", str);
+	return 0;
+}
